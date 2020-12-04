@@ -1,3 +1,5 @@
+package gg.jte.aoc
+
 import java.io.File
 
 fun getListOfIntsFromSingleLine(filename: String): List<Int> =
@@ -12,3 +14,5 @@ fun getLinesFromFile(filename: String): List<String> =
 fun getLinesFromFileAsInts(filename: String): List<Int> =
     getLinesFromFile(filename)
         .map { it.toInt() }
+
+fun shouldNotHappen(): Nothing = throw IllegalArgumentException("Should not happen !")
