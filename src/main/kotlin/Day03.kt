@@ -7,6 +7,16 @@ fun main() {
     // Part 1
     println(input.countTreesOnTheWay(Slope(x = 3, y = 1)))
 
+    // Part 2
+    println(input.findMultipliedTotalOfTreesFor(
+            listOf(
+                Slope(x = 1, y = 1),
+                Slope(x = 3, y = 1),
+                Slope(x = 5, y = 1),
+                Slope(x = 7, y = 1),
+                Slope(x = 1, y = 2)
+            )
+        ))
 }
 
 data class Slope(
@@ -14,12 +24,17 @@ data class Slope(
     val y: Int
 )
 
+fun List<String>.findMultipliedTotalOfTreesFor(slopes: List<Slope>) =
+    slopes.map { slope -> countTreesOnTheWay(slope).toLong() }
+        .reduce { acc, current -> acc * current }
+
 fun List<String>.countTreesOnTheWay(slope: Slope) =
     (0 until size step slope.y)
         .count { yPosition ->
-            val line = this[yPosition]
-            val xPosition = (slope.x * yPosition) % line.length
-            line[xPosition].isTree()
+            val currentLine = this[yPosition]
+            val movementsCount = yPosition / slope.y
+            val xPosition = (slope.x * movementsCount) % currentLine.length
+            currentLine[xPosition].isTree()
         }
 
 private fun Char.isTree() = this == '#'
