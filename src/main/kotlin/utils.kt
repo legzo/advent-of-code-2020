@@ -11,6 +11,9 @@ fun getListOfIntsFromSingleLine(filename: String): List<Int> =
 fun getLinesFromFile(filename: String): List<String> =
     File("src/main/resources/$filename").readLines()
 
+fun getTextFromFile(filename: String): String =
+    File("src/main/resources/$filename").readText()
+
 fun getLinesFromFileAsInts(filename: String): List<Int> =
     getLinesFromFile(filename)
         .map { it.toInt() }
