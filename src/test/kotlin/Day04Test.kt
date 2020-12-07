@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test
 class Day04Test {
 
     @Test
-    fun shouldValidatePassport() {
+    fun `should validate passport`() {
         Passport(
             fields = mapOf(
                 BirthYear to "1984"

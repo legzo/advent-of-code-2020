@@ -11,17 +11,15 @@ fun main() {
     println(input.countValidPassportsItemsWithFieldsValidation())
 }
 
-
 enum class PassportField(
-    val description: String,
     val shortLabel: String,
     val validate: (String) -> Boolean,
     val optional: Boolean = false,
 ) {
-    BirthYear("Birth Year", "byr", validate = isIntBetween(1920, 2002)),
-    IssueYear("Issue Year", "iyr", validate = isIntBetween(2010, 2020)),
-    ExpirationYear("Expiration Year", "eyr", validate = isIntBetween(2020, 2030)),
-    Height("Height", "hgt", validate = {
+    BirthYear("byr", validate = isIntBetween(1920, 2002)),
+    IssueYear("iyr", validate = isIntBetween(2010, 2020)),
+    ExpirationYear("eyr", validate = isIntBetween(2020, 2030)),
+    Height("hgt", validate = {
         val matchResult = PassportField.heightRegex.matchEntire(it)
         if (matchResult != null) {
             val (heightValue, unit) = matchResult.destructured
@@ -32,10 +30,10 @@ enum class PassportField(
             }
         } else false
     }),
-    HairColor("Hair Color", "hcl", validate = { PassportField.hairColorRegex.matches(it) }),
-    EyeColor("Eye Color", "ecl", validate = { it in setOf("amb", "blu", "brn", "gry", "grn", "hzl", "oth") }),
-    PassportId("Passport ID", "pid", validate = { PassportField.passportIdRegex.matches(it) }),
-    CountryId("Country ID", "cid", validate = { true }, optional = true);
+    HairColor("hcl", validate = { PassportField.hairColorRegex.matches(it) }),
+    EyeColor("ecl", validate = { it in setOf("amb", "blu", "brn", "gry", "grn", "hzl", "oth") }),
+    PassportId("pid", validate = { PassportField.passportIdRegex.matches(it) }),
+    CountryId("cid", validate = { true }, optional = true);
 
     companion object {
         val heightRegex = Regex("([0-9]+)(cm|in)")
