@@ -19,7 +19,7 @@ fun List<Int>.findPairWithSum(total: Int): Pair<Int, Int> {
 }
 
 fun List<Int>.findTripleWithSum(total: Int) =
-    findTripleMatching { it.first + it.second + it.third == 2020 }
+    findTripleMatching { it.first + it.second + it.third == total }
         ?: shouldNotHappen()
 
 fun List<Int>.findTripleMatching(predicate: (Triple<Int, Int, Int>) -> Boolean): Triple<Int, Int, Int>? {
