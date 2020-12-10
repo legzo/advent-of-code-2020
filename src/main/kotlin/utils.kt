@@ -19,3 +19,13 @@ fun getLinesFromFileAsInts(filename: String): List<Int> =
         .map { it.toInt() }
 
 fun shouldNotHappen(): Nothing = throw IllegalArgumentException("Should not happen !")
+
+fun <T> String.parseWithRegex(
+    regex: String,
+    mapResult: (MatchResult.Destructured) -> T?
+): T? {
+    val matchResult = Regex(regex).matchEntire(this)
+    return if (matchResult != null) {
+        mapResult(matchResult.destructured)
+    } else null
+}
