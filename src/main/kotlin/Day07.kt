@@ -8,12 +8,10 @@ fun main() {
         .mapNotNull { line -> parseAsBagConstraint(line) }
 
     // Part 1
-    println(println(bagConstraints.findAllContainersFor(Bag("shiny gold")).count()))
+    println(bagConstraints.findAllContainersFor(Bag("shiny gold")).count())
 
     // Part 2
-    println(
-
-    )
+    println(bagConstraints.countAllPossibleContainedBagsFor(Bag("shiny gold")))
 }
 
 data class Bag(val color: String)
@@ -47,14 +45,25 @@ fun parseAsBagConstraint(line: String): BagConstraint? {
 }
 
 fun List<BagConstraint>.findAllContainersFor(bag: Bag): Set<Bag> {
-    val directContainers = findDirectContainersFor(bag, this)
-    return directContainers + directContainers.flatMap { this.findAllContainersFor(it) }
+    val directContainers = findDirectContainersFor(bag)
+    return directContainers + directContainers.flatMap { findAllContainersFor(it) }
 }
 
-private fun findDirectContainersFor(
-    bag: Bag,
-    bagConstraints: List<BagConstraint>
-) = bagConstraints
-    .filter { bag in it.bagContents }
-    .map { it.container }
-    .toSet()
+fun List<BagConstraint>.countAllPossibleContainedBagsFor(bag: Bag): Int {
+    return countDirectContainedBags(bag) +
+            findContentsFor(bag)
+                .sumBy { it.quantity * countAllPossibleContainedBagsFor(it.bag) }
+}
+
+private fun List<BagConstraint>.findContentsFor(bag: Bag) =
+    first { it.container == bag }
+        .contents
+
+private fun List<BagConstraint>.findDirectContainersFor(bag: Bag) =
+    filter { bag in it.bagContents }
+        .map { it.container }
+        .toSet()
+
+private fun List<BagConstraint>.countDirectContainedBags(bag: Bag) =
+    findContentsFor(bag)
+        .sumBy { content -> content.quantity }
