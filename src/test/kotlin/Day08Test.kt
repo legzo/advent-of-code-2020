@@ -1,6 +1,8 @@
 package gg.jte.aoc
 
 import gg.jte.aoc.Instruction.*
+import gg.jte.aoc.Termination.CorrectTermination
+import gg.jte.aoc.Termination.InfiniteLoop
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 
@@ -24,7 +26,7 @@ class Day08Test {
     @Test
     fun `should parse instructions correctly`() {
         inputLines.parseAsInstructions() shouldBe listOf(
-            Noop,
+            Noop(0),
             Accumulate(1),
             Jump(4),
             Accumulate(3),
@@ -40,7 +42,14 @@ class Day08Test {
     fun `should get accumulator value just before loop`() {
         inputLines
             .parseAsInstructions()
-            .executeUntilLoopAndReturnAccumulator() shouldBe 5
+            .execute() shouldBe InfiniteLoop(lastAccumulatorValue = 5)
+    }
+
+    @Test
+    fun `should get accumulator value just correct termination`() {
+        inputLines
+            .parseAsInstructions()
+            .fixAndExecute() shouldBe CorrectTermination(lastAccumulatorValue = 8)
     }
 
 }

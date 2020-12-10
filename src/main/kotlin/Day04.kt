@@ -5,10 +5,10 @@ fun main() {
     val input = getTextFromFile("day_04.txt")
 
     // Part 1
-    println(input.countValidPassportsItems())
+    measureTimeAndPrint { input.countValidPassportsItems() }
 
     // Part 2
-    println(input.countValidPassportsItemsWithFieldsValidation())
+    measureTimeAndPrint { input.countValidPassportsItemsWithFieldsValidation() }
 }
 
 enum class PassportField(

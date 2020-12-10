@@ -5,10 +5,10 @@ fun main() {
     val input = getLinesFromFileAsInts("day_01.txt")
 
     // Part 1
-    println(with(input.findPairWithSum(2020)) { first * second })
+    measureTimeAndPrint { with(input.findPairWithSum(2020)) { first * second } }
 
     // Part 2
-    println(with(input.findTripleWithSum(2020)) { first * second * third })
+    measureTimeAndPrint { with(input.findTripleWithSum(2020)) { first * second * third } }
 
 }
 

@@ -8,10 +8,10 @@ fun main() {
         .mapNotNull { line -> parseAsBagConstraint(line) }
 
     // Part 1
-    println(bagConstraints.findAllContainersFor(Bag("shiny gold")).count())
+    measureTimeAndPrint { bagConstraints.findAllContainersFor(Bag("shiny gold")).count() }
 
     // Part 2
-    println(bagConstraints.countAllPossibleContainedBagsFor(Bag("shiny gold")))
+    measureTimeAndPrint { bagConstraints.countAllPossibleContainedBagsFor(Bag("shiny gold")) }
 }
 
 data class Bag(val color: String)

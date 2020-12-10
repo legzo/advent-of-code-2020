@@ -5,18 +5,18 @@ fun main() {
     val input = getTextFromFile("day_06.txt")
 
     // Part 1
-    println(
+    measureTimeAndPrint {
         input
             .parseGroups()
             .sumBy { it.numberOfQuestionsAnsweredWithYesByAtLeastOnePerson }
-    )
+    }
 
     // Part 2
-    println(
+    measureTimeAndPrint {
         input
             .parseGroups()
             .sumBy { it.numberOfQuestionsAnsweredWithYesByEveryone }
-    )
+    }
 }
 
 fun String.parseGroups(): List<Group> =

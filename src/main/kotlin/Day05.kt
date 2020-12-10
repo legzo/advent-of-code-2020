@@ -4,10 +4,10 @@ fun main() {
     val input = getLinesFromFile("day_05.txt")
 
     // Part 1
-    println(input.mapToSeatIds().maxOf { it })
+    measureTimeAndPrint { input.mapToSeatIds().maxOf { it } }
 
     // Part 2
-    println(findMissingSeat(input))
+    measureTimeAndPrint { findMissingSeat(input) }
 }
 
 private fun findMissingSeat(input: List<String>): Int {

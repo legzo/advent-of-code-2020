@@ -5,10 +5,11 @@ fun main() {
     val input = getLinesFromFile("day_03.txt")
 
     // Part 1
-    println(input.countTreesOnTheWay(Slope(x = 3, y = 1)))
+    measureTimeAndPrint { input.countTreesOnTheWay(Slope(x = 3, y = 1)) }
 
     // Part 2
-    println(input.findMultipliedTotalOfTreesFor(
+    measureTimeAndPrint {
+        input.findMultipliedTotalOfTreesFor(
             listOf(
                 Slope(x = 1, y = 1),
                 Slope(x = 3, y = 1),
@@ -16,7 +17,8 @@ fun main() {
                 Slope(x = 7, y = 1),
                 Slope(x = 1, y = 2)
             )
-        ))
+        )
+    }
 }
 
 data class Slope(

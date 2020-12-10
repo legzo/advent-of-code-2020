@@ -5,10 +5,10 @@ fun main() {
     val input = getLinesFromFile("day_02.txt")
 
     // Part 1
-    println(input.countCompliantPasswords(PasswordPolicy.Old))
+    measureTimeAndPrint { input.countCompliantPasswords(PasswordPolicy.Old) }
 
     // Part 2
-    println(input.countCompliantPasswords(PasswordPolicy.New))
+    measureTimeAndPrint { input.countCompliantPasswords(PasswordPolicy.New) }
 
 }
 
