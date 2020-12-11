@@ -108,7 +108,7 @@ fun List<Instruction>.execute(
 
 fun List<String>.parseAsInstructions(): List<Instruction> =
     mapNotNull { line ->
-        line.parseWithRegex("([\\w]+) ([\\+-][\\d]+)") { (actionAsString, valueAsString) ->
+        line.parseWithRegex("([\\w]+) ([+-][\\d]+)") { (actionAsString, valueAsString) ->
             val value = valueAsString.toInt()
             when (actionAsString) {
                 "nop" -> Noop(value)
