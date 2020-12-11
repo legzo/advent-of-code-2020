@@ -1,6 +1,5 @@
 package gg.jte.aoc
 
-
 fun main() {
     val input = getTextFromFile("day_04.txt")
 
